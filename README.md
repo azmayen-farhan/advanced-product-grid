@@ -6,7 +6,7 @@ A custom Elementor widget for WooCommerce, built to cover what an older WoodMart
 
 - WordPress with Elementor active (free version is enough)
 - WooCommerce active
-- PHP 7.4+
+- PHP 7.0+
 
 ## Install
 
