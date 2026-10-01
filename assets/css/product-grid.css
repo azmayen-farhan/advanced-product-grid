@@ -1,0 +1,313 @@
+/**
+ * Advanced Product Grid — front-end styles.
+ * Class names are prefixed with "apg-" to avoid clashing with WoodMart's
+ * own theme classes. A handful of !important rules are used only where
+ * WoodMart/WordPress core tends to apply broad resets (images, lists,
+ * link colors) that would otherwise leak into the widget.
+ */
+
+.apg-wrapper {
+	width: 100%;
+}
+
+/* ---------- Toolbar / sorting ---------- */
+
+.apg-toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 16px;
+	margin: 0 0 20px;
+}
+
+.apg-result-count {
+	margin: 0 auto 0 0;
+	font-size: 14px;
+	color: #666;
+}
+
+.apg-sorting-form {
+	display: inline-block;
+}
+
+.apg-orderby {
+	padding: 8px 32px 8px 12px;
+	border: 1px solid #e0e0e0;
+	border-radius: 2px;
+	font-size: 14px;
+	line-height: 1.4;
+	color: #333;
+	background-color: #fff;
+	cursor: pointer;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16'%3E%3Cpath fill='%23666666' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 8px center;
+}
+
+.apg-sort-submit {
+	margin-left: 8px;
+}
+
+/* ---------- Grid ---------- */
+
+.apg-grid {
+	display: grid;
+	grid-template-columns: repeat(var(--apg-cols, 4), 1fr);
+	gap: 20px;
+}
+
+.apg-card {
+	display: flex;
+	flex-direction: column;
+	background: #fff;
+	border: 1px solid #eee;
+	border-radius: 4px;
+	overflow: hidden;
+	box-sizing: border-box;
+	transition: box-shadow 0.3s ease;
+}
+
+.apg-card:hover {
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Image + hover swap (pure CSS, no JS) ---------- */
+
+.apg-image-wrap {
+	position: relative;
+	display: block;
+	width: 100%;
+	aspect-ratio: var(--apg-ratio, 1/1);
+	overflow: hidden;
+	background-color: #f7f7f7;
+}
+
+.apg-image-link {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.apg-image {
+	position: absolute !important;
+	top: 0 !important;
+	left: 0 !important;
+	width: 100% !important;
+	height: 100% !important;
+	max-width: 100% !important;
+	margin: 0 !important;
+	object-fit: cover !important;
+	transition: opacity 0.4s ease;
+}
+
+.apg-image-hover {
+	opacity: 0;
+}
+
+.apg-image-wrap:hover .apg-image-main {
+	opacity: 0;
+}
+
+.apg-image-wrap:hover .apg-image-hover {
+	opacity: 1;
+}
+
+/* ---------- Badges ---------- */
+
+.apg-badge {
+	position: absolute;
+	top: 12px;
+	left: 12px;
+	z-index: 2;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 44px;
+	height: 44px;
+	padding: 0 6px;
+	border-radius: 50%;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1;
+	box-sizing: border-box;
+}
+
+.apg-badge-sale {
+	background-color: #e2231a;
+	color: #fff !important;
+}
+
+.apg-badge-soldout {
+	background-color: #fff;
+	color: #222 !important;
+	border: 1px solid #eee;
+	font-size: 10px;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+}
+
+/* ---------- Content ---------- */
+
+.apg-content {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	flex-grow: 1;
+	padding: 16px;
+}
+
+.apg-title {
+	margin: 0;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.apg-title a {
+	color: #333;
+	text-decoration: none !important;
+}
+
+.apg-title a:hover {
+	color: #a02128;
+}
+
+.apg-price {
+	font-size: 15px;
+}
+
+.apg-price del {
+	margin-right: 6px;
+	color: #999;
+	font-weight: 400;
+	text-decoration: line-through;
+	opacity: 0.7;
+}
+
+.apg-price ins {
+	color: #a02128;
+	font-weight: 600;
+	text-decoration: none !important;
+}
+
+/* ---------- Variation swatches ---------- */
+
+.apg-swatches {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin: 4px 0;
+}
+
+.apg-swatch {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	min-width: 36px;
+	height: 32px;
+	padding: 0 8px;
+	border: 1px solid #ddd;
+	border-radius: 2px;
+	font-size: 13px;
+	color: #444;
+	text-decoration: none !important;
+	transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.apg-swatch:hover {
+	border-color: #a02128;
+	color: #a02128;
+}
+
+.apg-swatch-disabled {
+	color: #ccc;
+	border-color: #eee;
+	text-decoration: line-through !important;
+	cursor: not-allowed;
+}
+
+/* ---------- Order Now button ---------- */
+
+.apg-order-btn {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	margin-top: auto;
+	padding: 12px 16px;
+	border: 1px solid #a02128;
+	border-radius: 2px;
+	background-color: #a02128;
+	color: #fff !important;
+	text-align: center;
+	text-decoration: none !important;
+	font-size: 14px;
+	font-weight: 600;
+	transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.apg-order-btn:hover {
+	background-color: #841b21;
+	border-color: #841b21;
+	color: #fff !important;
+}
+
+.apg-sold-out .apg-order-btn {
+	opacity: 0.6;
+}
+
+/* ---------- Empty state ---------- */
+
+.apg-no-products {
+	padding: 40px 0;
+	text-align: center;
+	color: #999;
+}
+
+/* ---------- Pagination ---------- */
+
+.apg-pagination {
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
+}
+
+.apg-pagination ul {
+	display: flex;
+	list-style: none !important;
+	gap: 6px;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.apg-pagination li {
+	list-style: none !important;
+}
+
+.apg-pagination li a,
+.apg-pagination li span {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 36px;
+	height: 36px;
+	border: 1px solid #e0e0e0;
+	border-radius: 2px;
+	color: #444;
+	text-decoration: none !important;
+	font-size: 14px;
+}
+
+.apg-pagination li span.current {
+	background-color: #a02128;
+	border-color: #a02128;
+	color: #fff !important;
+}
+
+.apg-pagination li a:hover {
+	border-color: #a02128;
+	color: #a02128;
+}
